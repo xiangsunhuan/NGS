@@ -42,4 +42,51 @@ chmod [OPTIONS] RELATIONS[+ or -]PERMISSIONS FILE
 # 1. Adding permissions
 chmod RELATIONS+PERMISSIONS FILENAME
 chmod g+rwx FILENAME
+chmod g+r FILENAME
+# 2. Removing permissions
+chmod g-wx FILENAME
+chmod g-rwx FILENAME
+chmod a-rwx FILENAME
+chmod a-x FILENAME
+```
+OPTIONS include -R recursively (the permissions are applied to all the files, directories present inside the directory)  
+## Check system properties  
+In this section, you will learn how to check system resources (space, memory, disk usage, storage properties), system properties (operating system, Linux version, kernel version) and commands to access other information (CPU type, memory type, variables available etc ) about the environment  
+```
+# 1. Directory size
+du -sh DIRECTORY
+# 2. File size
+ls -lh FILENAME
+
+# 3. Available storage and mounts
+df -h
+
+# 4. Available memory
+free 
+free -g
+free -m
+
+# 5. System properties
+cat /etc/system-release
+uname -a
+uname -s # kernel name
+uname -n # node
+uname -v # version
+uname -r # release version date
+uname -i # platform
+uname -m # machine type
+uname -p # processor type
+uname -o # OS type
+
+# 6. Processor and Memory information
+cat /proc/meminfo
+cat /proc/cpuinfo
+
+# 7. IP address
+ifconfig
+
+# 8. Other information
+env
+For getting more information about the environment, you can type env, which lists all the variables currently set. If you want to know specifically about a variable, you can do:
+echo $VARIABLE
 ```
