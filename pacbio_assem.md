@@ -153,9 +153,9 @@ $ prokka --outdir GENOME --prefix XXXXX genome.fasta
 
 ### 6. 作业
 1. 查看两个组装软件的结果，dotplots图，用[gepard](http://cube.univie.ac.at/gepard)作dotplots图
-![Dotplots图](./dotplot.jpeg)
+![Dotplots图](./img/dotplot.jpeg)
 2. CG-View作图  
-![](./map.jpg)
+![](./img/map.jpg)
 提示：
 ```
 perl /home/biosoft/cgview/cgview_xml_builder/cgview_xml_builder.pl -sequence YZ011.gbk -output output.xml
