@@ -1,6 +1,19 @@
 This exercise will provide you details about some administrative commands with examples. Here, you can learn how to change permissions for files and folders to modify its accessibility and commands to obtain information about the system you are using.
 ## Changing permissions  
 All files in the UNIX system will have a set of permissions which define what can be done with that file and by whom. Here, what refers to read (view contents), write (modify) and execute (run as a script) and whom refers to user (owner), group (collection of users that the user belongs to) and others (everyone else).  
+| Permissions |	Symbol |
+| --- | --- |
+| read | r |
+| write |	w |
+| execute |	x |
+| all users |	a |  
+
+| Relations |	Symbol |
+| --- | --- |
+| owner |	u |
+| group |	g |
+| others |	o |  
+
 To look at the permissions for any file, you can list the files with `l` option (`ls –l`). Permissions User	Group	Size	Date modified	Name.  
 It looks something like this:   
 ```
@@ -20,7 +33,12 @@ drwxr-xr-x 2 wangys wangys      4096 Aug 29  2013 delete_me
 drwxr-xr-x 2 wangys wangys      4096 Aug 29  2013 Sequences
 -rwxr-xr-x 1 wangys wangys      1196 Jun 23  2014 template_jobfile.sub
 ```
+理解各列的含义  
+
 To set/modify a file’s permissions you need to use the `chmod` command (`ch`ange `mod`e). Only the owner of a file can alter a file’s permissions. The syntax:  
 ```
-
+chmod [OPTIONS] RELATIONS[+ or -]PERMISSIONS FILE
+# 1. Adding permissions
+chmod RELATIONS+PERMISSIONS FILENAME
+chmod g+rwx FILENAME
 ```
