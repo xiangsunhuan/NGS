@@ -1,4 +1,4 @@
-# 高通量测序数据分析实践操作  
+# 高通量测序及数据分析  
 
 ## Linux基础  
 1. [Linux Basic 1](https://github.com/hnnd/NGS/blob/master/linux/basic_1.md)
