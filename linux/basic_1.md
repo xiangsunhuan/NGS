@@ -1,5 +1,6 @@
 This exercise is designed to provide the basic skills required for working in the UNIX environment, using plenty of relevant examples, specifically for biologists.
-
+## command list   
+`cd pwd ls mkdir cp touch nano less more cat head tail rm rmdir zip unzip tar gzip gunzip`
 ## 准备数据  
 ```
 cd ~
