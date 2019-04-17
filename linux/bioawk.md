@@ -14,6 +14,7 @@ You can download and install it from the [Git repository](https://github.com/lh3
 * And all standard awk flags will work with bioawk  
 ### Variables for each format  
 For the `-c` you can either specify `bed`, `sam`, `vcf`, `gff`, `fastx` or `header`. Bioawk will parse these variables for the respective format  
+
 bed |	sam	| vcf |	gff	| fastx
 --- | --- | --- | --- | ---
 chrom |	qname |	chrom |	seqname |	name
