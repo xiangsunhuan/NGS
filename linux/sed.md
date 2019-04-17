@@ -58,3 +58,20 @@ sed -n '1~4p;2~4p' FASTQ_FILE | sed 's/^@/>/g' > FASTA_FILE
 # 8. print 1 to 10, and then multiples of 10
 sed -n '1,10~10p'  FILENAME
 ```
+### 3. Delete specific lines of the file   
+All the above address types (specific line, range, multiples), also works with other types of operation, such as deletion and insertion. For deletion, you need to swap `p` with `d`  
+Some examples:  
+```
+# 1. delete first line
+sed "1d" FILENAME
+# 2. delete lines 1 thru 3
+sed "1,3d" FILENAME
+# 3. delete blank lines
+sed 's/^$//g' FILENAME
+```
+### 4. Insert specific lines to a file  
+Here, you use i for inserting text anywhere in the file  
+```
+# put “line to insert” in the second line
+sed '2 i line to insert' FILENAME
+```
