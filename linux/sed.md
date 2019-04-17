@@ -12,10 +12,10 @@ sed 'OPERATION/REGEXP/REPLACEMENT/FLAGS' FILENAME
 * OPERATION specifies the action to be performed (sometimes if a condition is satisfied). The most common and widely used operation is s which does the substitution operation (other useful operators include y for transformation, i for insertion, d for deletion etc.).  
 * REGEXP and REPLACEMENT specify search term and the substitution term respectively for the operation that is being performed.  
 * FLAGS are additional parameters that control the operation. Some common FLAGS include:  
-** g	replace all the instances of REGEXP with REPLACEMENT (globally)  
-** N where N is any number, to replace Nth instance of the REGEXP with REPLACEMENT  
-** p if substitution was made, then prints the new pattern space   
-** i ignores case for matching REGEXP  
-** w file If substitution was made, write out the result to the given file  
-** d when specified without REPLACEMENT, deletes the found REGEXP  
+  * g	replace all the instances of REGEXP with REPLACEMENT (globally)  
+  * N where N is any number, to replace Nth instance of the REGEXP with REPLACEMENT  
+  * p if substitution was made, then prints the new pattern space   
+  * i ignores case for matching REGEXP  
+  * w file If substitution was made, write out the result to the given file  
+  * d when specified without REPLACEMENT, deletes the found REGEXP  
 
