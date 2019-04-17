@@ -30,3 +30,66 @@ blockcount | seq |	attribute |	 |
 blocksizes |	qual |  |   |   	 	 	 
 blockstarts |  |	 |	 |	 
 
+If `-c header` is specified, the field names (first line) will be used as variables (spaces and special character will be changed to under_score).  
+## 示例 Demos   
+```
+1. For FASTA files
+# Get length for sequences
+bioawk -c fastx '{ print $name, length($seq) }' input.fasta
+
+# Get %GC for sequences
+bioawk -c fastx '{ print $name, gc($seq) }' input.fasta
+
+# Get reverse complement for all sequences
+bioawk -c fastx '{ print ">"$name;print revcomp($seq) }' input.fasta
+
+# Print sequences with length greater than 100 bases
+bioawk -c fastx 'length($seq) > 100{ print ">"$name; print $seq }'  input.fasta
+
+# Add a prefix/suffix to the sequence defline
+bioawk -c fastx '{ print ">PREFIX"$name; $seq }' input.fasta
+bioawk -c fastx '{ print ">"$name"|SUFFIX"; $seq }' input.fasta
+
+# Convert FASTA to tabular format
+bioawk -t -c fastx '{ print $name, $seq }' input.fasta
+
+# Extract sequences based on ids in a file
+#for large scale use cdbyank instead
+bioawk -cfastx 'BEGIN{while((getline k <"IDs.txt")>0)i[k]=1}{if(i[$name])print ">"$name"\n"$seq}' input.fasta
+
+2. For fastq files
+# Count the number of records (reads)
+bioawk -t -c fastx 'END {print NR}' input.fastq
+# note that when fastq is specified, each record is 4 lines
+
+# Convert fastq to FASTA
+bioawk -c fastx '{print ">"$name; print $seq}' input.fastq
+
+# Get the mean Phred quality score from fastq
+bioawk -c fastx '{print ">"$name; print meanqual($qual)}' input.fastq
+
+# Filter reads shorter than 10 bp (or any bp)
+bioawk -cfastx 'length($seq) > 10 {print "@"$name"\n"$seq"\n+\n"$qual}' input.fastq
+
+# Trim fastq files based on quality
+bioawk -c fastx ' trimq(30, 0, 5){print $0}' input.fastq
+# trims fastq bases 0 to 5 (beginning to end), scores less than 30.
+
+3. For BED files
+# Print the feature length
+bioawk -c bed '{ print $end - $start }' test.bed
+
+4. For SAM files
+# Extract unmapped reads
+bioawk -c sam 'and($flag,4)' input.sam
+
+# Extract mapped reads
+bioawk -c sam -H '!and($flag,4)' input.sam
+
+# Create FASTA from SAM
+bioawk -c sam '{ s=$seq; if(and($flag, 16)) {s=revcomp($seq) } print ">"$qname"\n"s}' input.sam > output.fasta
+
+5. For VCF files
+# Print the genotypes of sample foo and bar from a VCF:
+grep -v ^## in.vcf | bioawk -tc hdr '{print $foo,$bar}'
+```
