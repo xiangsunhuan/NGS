@@ -12,3 +12,20 @@ You can download and install it from the [Git repository](https://github.com/lh3
 * `-v var=value` initialize a variable and value [std to awk as well]  
 * `-H` retain header in the output file (for files like SAM)  
 * And all standard awk flags will work with bioawk  
+### Variables for each format  
+For the `-c` you can either specify `bed`, `sam`, `vcf`, `gff`, `fastx` or `header`. Bioawk will parse these variables for the respective format  
+bed |	sam	| vcf |	gff	| fastx
+--- | --- | --- | --- | ---
+chrom |	qname |	chrom |	seqname |	name
+start |	flag |	pos |	source |	seq
+end |	rname |	id |	feature |	qual
+name |	pos |	ref |	start |	comment
+score |	mapq |	alt |	end	 | 
+strand | 	cigar |	qual |	score |	 
+thickstart |	rnext |	filter |	filter	|   
+thickend |	pnext |	info |	strand |	 
+rgb |	tlen |	group |	 	|   
+blockcount | seq |	attribute |	 |  	 
+blocksizes |	qual |  |   |   	 	 	 
+blockstarts |  |	 |	 |	 
+
