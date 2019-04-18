@@ -17,7 +17,7 @@ Command |	Purpose |	Example |	Use cases
 Make sure your Linux server allows X11 forwarding. You can enable this when you are logging in to the remote host using the `-X` option. For eg.,
 
 ```
-ssh -X arnstrm@condodtn.its.iastate.edu
+ssh -X 用户名@10.100.128.160
 ```  
 Once logged in, you can now open any GUI interface programs on the remote-host and it appears as a new window in your local machine. Although, there are plenty of program options to open a `pdf` file, you can almost always find the `firefox` browser in every machine. This should be sufficient to open a PDF file. To get started, type:
 
