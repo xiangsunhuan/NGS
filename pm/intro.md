@@ -42,7 +42,7 @@ Science isn’t reproducible if it isn’t recorded. Traditionally, paper notebo
 #### GitHub  
 GitHub is often thought of as a tool for programmers to version control code but it can also be used to version control text documents as an online notebook. If you don’t have a GitHub account, you can set one up based on this GitHub Tutorial and the free version of GitHub now allows for unlimited free repositories. In addition, as a researcher or educator you can request a free upgrade to get access to unlimited users in private repos..
 
-One of the great aspects of GitHub is that you can use markdown syntax to very quickly format your notebook. For example, This tutorial is written in markdown and you can make headers# ## ###, bullet points *, code blocks and insert images very easily. Markdown can also be easily converted to PDF for sharing.
+One of the great aspects of GitHub is that you can use markdown syntax to very quickly format your notebook. For example, This tutorial is written in markdown and you can make headers# ## ###, bullet points `*`, code blocks and insert images very easily. Markdown can also be easily converted to PDF for sharing.
 
 Assuming you now have a GitHub account, create a GitHub repository with the same name you labeled your project folder (ie: WhiteAbaloneRNA-Seq or SeriolaGWAS).
 
@@ -82,5 +82,8 @@ For every step you perform bioinformatically, record it in your markdown file al
 * Computername and path of working directory
 * Description of what you are trying to do and why
 * Code block of the commands you used
-* Description of the result
+* Description of the result  
+
 This last step is important as it is a discrete block of notes that is the smallest unit of replicable notes in your notebook. The Why, How and Result can be replicated multiple times if it is the same day in the same folder.
+### 3. Record of time spent
+Bioinformatics projects can be time consuming and frustrating with a lot of trial and error. It often happens that at the end of a week, it doesn’t feel like anything was accomplished. Keeping track of your time spent on a daily basis can bring peace of mind. This can be easily accomplished using a Google spreadsheet with days of the month at the top as columns and project names as rows on the left. For each project there should be two rows; hours spent and description of what you did. The column widths can be relatively short since hours spent in a day is not more than 2 digits and the description can just flow into adjacent cells. It is also helpful to see where your time is being spent and better manage your work/life balance and provide a tool for those in your group to manage their work/life balance.
