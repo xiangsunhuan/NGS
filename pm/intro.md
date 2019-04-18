@@ -31,7 +31,7 @@ Prepend the descriptive folder name that you usually create with a number starti
   * 01_AnalysisStepOne
   * 02_AnalysisStepTwo
   * 03_AnalysisStepThree
-  
+
 The extra 0 from 00 - 09 keeps the folders in numerical order when executing the list `ls` command. Then you in 6 months or the next person on the project will thank you as it is easy to numerically follow the steps based on the folder number and the date the folder was generated `ls -lha`.
 
 The name of your project folder should be descriptive of the project, for example, WhiteAbaloneRNA-Seq or SeriolaGWAS.
@@ -70,17 +70,17 @@ If you work on multiple machines and your laptop then create a folder for each m
  * laptop
   * 01_AnalysisStepOne.md
   * 02_AnalysisStepTwo.md
-  
+
 #### Atom (text editor)
-If you haven’t already, download and install GitHub ATOM. This is a text editor that understands markdown syntax and allows you to preview markdown that you write in an adjacent window. See markdown tutorial for more information.
+If you haven’t already, download and install [GitHub ATOM](https://atom.io/). This is a text editor that understands markdown syntax and allows you to preview markdown that you write in an adjacent window. See markdown tutorial for more information.
 
 What, When, Where, Why, How and the Result
 For every step you perform bioinformatically, record it in your markdown file along with
 
-Title
-Date
-Computername and path of working directory
-Description of what you are trying to do and why
-Code block of the commands you used
-Description of the result
+* Title
+* Date
+* Computername and path of working directory
+* Description of what you are trying to do and why
+* Code block of the commands you used
+* Description of the result
 This last step is important as it is a discrete block of notes that is the smallest unit of replicable notes in your notebook. The Why, How and Result can be replicated multiple times if it is the same day in the same folder.
