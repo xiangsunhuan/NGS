@@ -11,6 +11,11 @@
 ## 生信项目管理  
 [项目管理介绍](https://github.com/hnnd/NGS/blob/master/pm/intro.md)
 
+## 生信一般工具软件
+* [blast](https://github.com/hnnd/NGS/blob/master/tools/blast.md)
+* [diamond](https://github.com/hnnd/NGS/blob/master/tools/diamond.md)
+* [下载数据wget和curl](https://github.com/hnnd/NGS/blob/master/tools/wget.md)
+
 ## 实践模块  
 1. [基因组组装（PacBio序列）及注释](https://github.com/hnnd/NGS/blob/master/pacbio_assem.md)  
 2. [RNA-Seq](https://github.com/hnnd/NGS/blob/master/RNA-Seq.md)  
