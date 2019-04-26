@@ -15,7 +15,11 @@
 * [blast](https://github.com/hnnd/NGS/blob/master/tools/blast.md)
 * [diamond](https://github.com/hnnd/NGS/blob/master/tools/diamond.md)
 * [下载数据wget和curl](https://github.com/hnnd/NGS/blob/master/tools/wget.md)
+* [从SRA下载序列](https://github.com/hnnd/NGS/blob/master/tools/sra.md)
+* [操作序列](https://github.com/hnnd/NGS/blob/master/tools/fasta.md)
 
-## 实践模块  
-1. [基因组组装（PacBio序列）及注释](https://github.com/hnnd/NGS/blob/master/pacbio_assem.md)  
+## 课程实习模块  
+1. [基因组组装之  SPAdes](https://github.com/hnnd/NGS/blob/master/genome/spades.md)
+2. [基因组组装（PacBio序列）及注释](https://github.com/hnnd/NGS/blob/master/pacbio_assem.md)  
+2.
 2. [RNA-Seq](https://github.com/hnnd/NGS/blob/master/RNA-Seq.md)  
