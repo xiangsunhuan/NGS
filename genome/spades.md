@@ -34,10 +34,17 @@ Notes:
 ## SPAdes运行示例
 > 说明：用到的数据存放在：`/data/lab/ngs/spades`，有两个序列文件：`s_6_1.fastq.gz, s_6_2.fastq.gz`。
 
+新建一个脚本文件`work.sh`
+
 ```
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N spades
+#$ -j y
+#$ -cwd
 spades.py -1 /data/lab/ngs/spades/s_6_1.fastq.gz -2 /data/lab/ngs/spades/s_6_2.fastq.gz -o ecoli
 ```
-
+递交任务`qsub work.sh`
 ## SPAdes输出
 SPAdes stores all output files in <output_dir> , which is set by the user.
 
@@ -59,4 +66,4 @@ In general, SPAdes uses two techniques for joining contigs into scaffolds. First
 To view FASTG and GFA files we recommend to use [Bandage visualization tool](http://rrwick.github.io/Bandage/). Note that sequences stored in assembly_graph.fastg correspond to contigs before repeat resolution (edges of the assembly graph). Paths corresponding to contigs after repeat resolution (scaffolding) are stored in contigs.paths (scaffolds.paths) in the format accepted by Bandage (see Bandage wiki for details). The example is given below.
 
 ## 组装结果评估
-[QUAST](http://cab.spbu.ru/software/quast/) may be used to generate summary statistics (N50, maximum contig length, GC %, # genes found in a reference list or with built-in gene finding tools, etc.) for a single assembly. It may also be used to compare statistics for multiple assemblies of the same data set (e.g., SPAdes run with different parameters, or several different assemblers). 
+[QUAST](http://cab.spbu.ru/software/quast/) may be used to generate summary statistics (N50, maximum contig length, GC %, # genes found in a reference list or with built-in gene finding tools, etc.) for a single assembly. It may also be used to compare statistics for multiple assemblies of the same data set (e.g., SPAdes run with different parameters, or several different assemblers).
