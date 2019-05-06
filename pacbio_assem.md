@@ -11,9 +11,9 @@
 ## 数据  
 ```
 # 原始测序存放在：
-/bs1/data/NGS/pacbio
+/data/lab/ngs/pacbio
 
-[wangys@c1 pacbio]$ ll /bs1/data/NGS/pacbio
+[wangys@c1 pacbio]$ ll /data/lab/ngs/pacbio
 total 15045772
 -rw-r--r--. 1 wangys wangys 5640540317 Apr 22 12:27 m170309_165401_42221_c101149812550000001823255607191754_s1_p0.1.bax.h5
 -rw-r--r--. 1 wangys wangys  445711165 Apr 22 12:27 m170309_165401_42221_c101149812550000001823255607191754_s1_p0.1.subreads.fastq
@@ -33,7 +33,7 @@ total 15045772
 $ mkdir work #我以work目录为例，大家自己建一个自己的工作目录，注意，后面的目录名也要作相应改变
 $ cd work
 $ mkdir data assem annotation
-$ ln -s /bs1/data/NGS/pacbio/* data/
+$ ln -s /data/lab/ngs/pacbio/* data/
 
 ```
 ### 2. 组装
@@ -48,7 +48,6 @@ $ cd assem
 #$ -N canu_wang
 #$ -cwd
 #$ -j y
-module add bioinfo
 canu -p test -d output genomeSize=6.5m \
 	gridEngineThreadsOption="-pe smp THREADS" \
 	gridEngineMemoryOption="-l mem_free=MEMORY" \
@@ -73,7 +72,6 @@ $ cat ../data/*.fastq > reads.fastq
 #$ -N mecat_wang
 #$ -cwd
 #$ -j y
-module add bioinfo
 mecat2pw -j 0 -d reads.fastq -o reads.fastq.pm.can -w wrk_dir -t 4
 mecat2cns -i 0 -t 4 reads.fastq.pm.can reads.fastq corrected_reads.fasta
 extract_sequences corrected_reads.fasta corrected_reads_25x 6500000 25
@@ -110,7 +108,6 @@ $ ln -s ../mecat/corrected_reads.fasta ./
 #$ -N circ_wang
 #$ -cwd
 #$ -j y
-module add bioinfo
 circlator all test.contigs.fasta corrected_reads.fasta output
 
 # 提交任务
@@ -127,16 +124,16 @@ $ cd quiver
 $ ln -s ../circle/06.fixstart.fasta ./
 # 第一步align all the reads to the genome
 # 新建一个输入文件列表文件
-$ ls /bs1/data/NGS/pacbio/*.h5 > input.fofn
+$ ls /data/lab/ngs/pacbio/*.h5 > input.fofn
 $ ssh c8 或者ssh c2 或者ssh c3
 $ 回到工作目录
-$ /home/biosoft/smrtanalysis/smrtcmds/bin/smrtshell 
+$ /opt/smrtanalysis/smrtcmds/bin/smrtshell 
 $ pbalign --forQuiver --nproc 4 input.fofn 06.fixstart.fasta reads.cmp.h5
 
 # 第二步,polish
 $ ssh c8 或者ssh c2 或者ssh c3
 $ 回到工作目录
-$ /home/biosoft/smrtanalysis/smrtcmds/bin/smrtshell
+$ /opt/smrtanalysis/smrtcmds/bin/smrtshell
 $ quiver -j 4 reads.cmp.h5 -r 06.fixstart.fasta -o test.quiver.fasta  -o test.quiver.gff -o test.quiver.fastq
 ```
 Polish完成之后检查test.quiver.fasta序列文件。
@@ -158,7 +155,7 @@ $ prokka --outdir GENOME --prefix XXXXX genome.fasta
 ![](./img/map.jpg)
 提示：
 ```
-perl /home/biosoft/cgview/cgview_xml_builder/cgview_xml_builder.pl -sequence YZ011.gbk -output output.xml
+perl /opt/bio/cgview/cgview_xml_builder/cgview_xml_builder.pl -sequence YZ011.gbk -output output.xml
 java -jar /home/biosoft/cgview/cgview.jar -i output.xml -o map.png -f png
 ```
 
