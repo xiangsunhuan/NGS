@@ -31,16 +31,16 @@ MUT-3.R1.fastq.gz, MUT-3.R2.fastq.gz | 突变体 | Mutant-3
 **获取数据**
 ```
 试验数据服务器存放地址
-/bs1/data/NGS/data/
+/data/lab/ngs/rna-seq/
 测序原始数据
-/bs1/data/NGS/data/fq/
+/data/lab/ngs/rna-seq/fq/
 参考基因组
-/bs1/data/NGS/data/ref/
+/data/lab/ngs/rna-seq/ref/
 
 准备工作目录
 $ mkdir work work/00.fq work/db
 $ cd work/00.fq
-$ ln -s /bs1/data/NGS/data/fq/*.gz ./
+$ ln -s /data/lab/ngs/rna-seq/fq/*.gz ./
 $ ls -l
 lrwxrwxrwx. 1 public public 39 11月  8 09:00 MUT-1.R1.fastq.gz -> /bs1/data/NGS/data/fq/MUT-1.R1.fastq.gz
 lrwxrwxrwx. 1 public public 39 11月  8 09:00 MUT-1.R2.fastq.gz -> /bs1/data/NGS/data/fq/MUT-1.R2.fastq.gz
@@ -59,7 +59,7 @@ lrwxrwxrwx. 1 public public 39 11月  8 09:00 WLD-3.R2.fastq.gz -> /bs1/data/NGS
 
 #### 工作目录结构参考  
 ```
-/bs1/user/ngs/wang/ngs
+path/to/work/wang/ngs
 ├── 00.fq
 │   └── qc
 ├── 01.hisat
@@ -112,7 +112,6 @@ $ mkdir qc
 #!/bin/bash
 #$ -S /bin/bash
 #$ -cwd
-module add bioinfo
 fastqc -o qc/ *.fastq.gz
 ```
 
