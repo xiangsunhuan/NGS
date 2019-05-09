@@ -7,7 +7,7 @@
 样本量如果大于10，推荐使用[TACO](https://tacorna.github.io/)，代替cuffmerge或stringtie    
 
 本试验流程主要参考文献：[Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie and Ballgown.](http://www.nature.com/nprot/journal/v11/n9/full/nprot.2016.095.html)   
-![Hisat pipeline](./hisatpipeline.png)
+![Hisat pipeline](./img/hisatpipeline.png)
 
 ## 上机操作  
 
