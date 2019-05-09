@@ -24,7 +24,7 @@ $ cd 02.kallisto
 >运行时间：~ 2 min
 
 ```
-$ kallisto index -i transdb /bs1/data/NGS/data/ref/transcripts.fa
+$ kallisto index -i transdb /data/lab/ngs/rna-seq/ref/transcripts.fa
 ```
 
 **STEP2: 计算每个基因的reads number (count)**  
