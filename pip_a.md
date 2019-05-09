@@ -26,7 +26,7 @@ $ mkdir 01.hisat/db
 
 ```
 $ cd 01.hisat/db/
-$ ln -s /bs1/data/NGS/data/ref/genome.fa ./
+$ ln -s /data/lab/ngs/rna-seq/ref/genome.fa ./
 $ hisat2-build genome.fa genome
 ```
 建完索引后会生成几个索引文件  
@@ -40,7 +40,7 @@ $ ls -l
 -rw-rw-r--. 1 public public 20682414 11月  8 08:12 genome.6.ht2
 -rw-rw-r--. 1 public public        8 11月  8 08:10 genome.7.ht2
 -rw-rw-r--. 1 public public        8 11月  8 08:10 genome.8.ht2
-lrwxrwxrwx. 1 public public       32 11月  8 08:06 genome.fa -> /bs1/data/NGS/data/ref/genome.fa
+lrwxrwxrwx. 1 public public       32 11月  8 08:06 genome.fa -> /data/lab/ngs/rna-seq/ref/genome.fa
 ```
 **STEP2: Mapping**
 
@@ -58,7 +58,6 @@ $ cd mapping
 #$ -S /bin/bash
 #$ -N hisat2
 #$ -cwd
-module add bioinfo
 hisat2 -x ../db/genome -1 ../../00.fq/WLD-1.R1.fastq.gz -2 ../../00.fq/WLD-1.R2.fastq.gz -S wild_1.sam 2> wild_1.log
 hisat2 -x ../db/genome -1 ../../00.fq/WLD-2.R1.fastq.gz -2 ../../00.fq/WLD-2.R2.fastq.gz -S wild_2.sam 2> wild_2.log
 hisat2 -x ../db/genome -1 ../../00.fq/WLD-3.R1.fastq.gz -2 ../../00.fq/WLD-3.R2.fastq.gz -S wild_3.sam 2> wild_3.log
@@ -102,7 +101,6 @@ mutant_3 | | |
 #$ -S /bin/bash
 #$ -N bamsort
 #$ -cwd
-module add bioinfo
 samtools view -b wild_1.sam | samtools sort -o wild_1.bam - 
 samtools view -b wild_2.sam | samtools sort -o wild_2.bam - 
 samtools view -b wild_3.sam | samtools sort -o wild_3.bam -
@@ -133,13 +131,26 @@ $ rm *.sam
 $ cd ../
 $ mkdir assem
 $ cd assem
-$ stringtie -G /bs1/data/NGS/data/ref/gene.gff -o wild_1.gtf -l wild_1 ../mapping/wild_1.bam
-$ stringtie -G /bs1/data/NGS/data/ref/gene.gff -o wild_2.gtf -l wild_2 ../mapping/wild_2.bam
-$ stringtie -G /bs1/data/NGS/data/ref/gene.gff -o wild_3.gtf -l wild_3 ../mapping/wild_3.bam
-$ stringtie -G /bs1/data/NGS/data/ref/gene.gff -o mutant_1.gtf -l mutant_1 ../mapping/mutant_1.bam
-$ stringtie -G /bs1/data/NGS/data/ref/gene.gff -o mutant_2.gtf -l mutant_2 ../mapping/mutant_2.bam
-$ stringtie -G /bs1/data/NGS/data/ref/gene.gff -o mutant_3.gtf -l mutant_3 ../mapping/mutant_3.bam
-合并
+```
+
+新建一个脚本文件`stringtie.sh`，包含以下内容：
+
+```
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N stringtie
+#$ -cwd
+$ stringtie -G /data/lab/ngs/rna-seq/ref/gene.gff -o wild_1.gtf -l wild_1 ../mapping/wild_1.bam
+$ stringtie -G /data/lab/ngs/rna-seq/ref/gene.gff -o wild_2.gtf -l wild_2 ../mapping/wild_2.bam
+$ stringtie -G /data/lab/ngs/rna-seq/ref/gene.gff -o wild_3.gtf -l wild_3 ../mapping/wild_3.bam
+$ stringtie -G /data/lab/ngs/rna-seq/ref/gene.gff -o mutant_1.gtf -l mutant_1 ../mapping/mutant_1.bam
+$ stringtie -G /data/lab/ngs/rna-seq/ref/gene.gff -o mutant_2.gtf -l mutant_2 ../mapping/mutant_2.bam
+$ stringtie -G /data/lab/ngs/rna-seq/ref/gene.gff -o mutant_3.gtf -l mutant_3 ../mapping/mutant_3.bam
+```
+递交任务：`qsub stringtie.sh`
+
+合并文件
+```
 $ ls *.gtf > mergelist.txt
 $ stringtie --merge -G /bs1/data/NGS/data/ref/gene.gff -o stringtie_merge.gtf mergelist.txt
 
@@ -267,6 +278,15 @@ $ R
 $ mkdir count
 $ cd count
 $ ln -s ../assem/stringtie_merge.gtf ./
+```
+
+Create a job scripts`htseq.sh`:
+```
+```
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N hiseq-count
+#$ -cwd
 $ htseq-count -f bam -r pos -s no -i gene_id -q ../mapping/wild_1.bam stringtie_merge.gtf > wild_1.count
 $ htseq-count -f bam -r pos -s no -i gene_id -q ../mapping/wild_2.bam stringtie_merge.gtf > wild_2.count
 $ htseq-count -f bam -r pos -s no -i gene_id -q ../mapping/wild_3.bam stringtie_merge.gtf > wild_3.count
@@ -275,8 +295,8 @@ $ htseq-count -f bam -r pos -s no -i gene_id -q ../mapping/mutant_2.bam stringti
 $ htseq-count -f bam -r pos -s no -i gene_id -q ../mapping/mutant_3.bam stringtie_merge.gtf > mutant_3.count
 $ paste wild_1.count wild_2.count wild_3.count mutant_1.count mutant_2.count mutant_3.count | cut -f 1,2,4,6,8,10,12 | head -n -5 > count.txt
 $ sed -i '1i\gene_id\twild_1\twild_2\twild_3\tmutant_1\tmutant_2\tmutant_3' count.txt
-$ 
 ```
+Submit the job: `qsub htseq.sh`
 
 **DE analysis with DESeq2**  
 
