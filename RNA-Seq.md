@@ -160,9 +160,9 @@ $ ll qc/
 
 RNA-Seq项目分析主要可分为3种应用情景  
 
-[1) 有参考基因组，需要预测新转录本（a）Hisat2, StringTie, ](https://github.com/lukeping/NGS/blob/master/pip_a.md)  
-[2) 有参考基因组，不需要预测新转录本（b）](https://github.com/lukeping/NGS/blob/master/pip_b.md)  
-[3) 无参考基因组（c）](https://github.com/lukeping/NGS/blob/master/pip_c.md)  
+[1) 有参考基因组，需要预测新转录本（a）Hisat2, StringTie, ](https://github.com/hnnd/NGS/blob/master/pip_a.md)  
+[2) 有参考基因组，不需要预测新转录本（b）](https://github.com/hnnd/NGS/blob/master/pip_b.md)  
+[3) 无参考基因组（c）](https://github.com/hnnd/NGS/blob/master/pip_c.md)  
 
 ### 3. 特色分析  
 
