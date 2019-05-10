@@ -67,7 +67,7 @@ sed "1d" FILENAME
 # 2. delete lines 1 thru 3
 sed "1,3d" FILENAME
 # 3. delete blank lines
-sed 's/^$//g' FILENAME
+sed '/^$//d' FILENAME
 ```
 ### 4. Insert specific lines to a file  
 Here, you use i for inserting text anywhere in the file  
