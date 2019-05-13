@@ -47,8 +47,8 @@ bioawk -c fastx '{ print ">"$name;print revcomp($seq) }' input.fasta
 bioawk -c fastx 'length($seq) > 100{ print ">"$name; print $seq }'  input.fasta
 
 # Add a prefix/suffix to the sequence defline
-bioawk -c fastx '{ print ">PREFIX"$name; $seq }' input.fasta
-bioawk -c fastx '{ print ">"$name"|SUFFIX"; $seq }' input.fasta
+bioawk -c fastx '{ print ">PREFIX"$name; print $seq }' input.fasta
+bioawk -c fastx '{ print ">"$name"|SUFFIX"; print $seq }' input.fasta
 
 # Convert FASTA to tabular format
 bioawk -t -c fastx '{ print $name, $seq }' input.fasta
