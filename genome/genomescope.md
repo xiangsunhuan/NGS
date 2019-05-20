@@ -56,9 +56,10 @@ jellyfish histo -t 10 reads.jf > reads.histo
     wget https://raw.githubusercontent.com/schatzlab/genomescope/master/genomescope.R
     ```
     * 运行程序
-    ```
+    
+```
 Rscript genomescope.R reads.histo 21 100 gs 1000
-    ```
+```
 4. 查看结果
 
 结果保存在`gs`文件夹下  
