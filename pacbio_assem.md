@@ -89,7 +89,65 @@ $ qsub work.sh
 ```
 任务完成后其结果存放在output目录中。主要结果文件为test.contigs.fasta 
 
-**比较canu和mecat运行时间和组装**
+**flye组装**
+```
+$ mkdir flye
+$ cd flye
+$ mkdir data
+$ ln -s /data/lab/ngs/pacbio/*.fastq data/
+
+```
+
+flye运行脚本：  
+work.sh
+```
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N flye_wang
+#$ -cwd
+#$ -j y
+#$ -pe smp 4
+flye --pacbio-raw data/*.fastq --out-dir out_pacbio --genome-size 5m --threads 4
+```
+
+**wtdbg2**
+```
+$ mkdir wtdbg2
+$ cd wtdbg2
+$ mkdir data
+$ ln -s /data/lab/ngs/pacbio/*.fastq data/
+```
+创建运行脚本work.sh   
+```
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N wtdbg2_wang
+#$ -cwd
+#$ -j y
+#$ -pe smp 4
+wtdbg2 -x rs -g 4.6m -i data/*.fastq -t4 -fo out_wtdbg2
+wtpoa-cns -t4 -i out_wtdbg2.ctg.lay.gz -fo out_wtdbg2.ctg.fa
+```
+
+**miniasm**
+```
+$ mkdir miniasm
+$ cd miniasm
+$ mkdir data
+$ cat /data/lab/ngs/pacbio/*.fastq > data/pb-reads.fq
+```
+work.sh
+```
+#!/bin/bash
+#$ -S /bin/bash
+#$ -N wtdbg2_wang
+#$ -cwd
+#$ -j y
+#$ -pe smp 4
+minimap2 -x ava-pb -t4 data/pb-reads.fq data/pb-reads.fq | gzip -1 > reads.paf.gz
+miniasm -f data/pb-reads.fq reads.paf.gz > miniasm.gfa
+```
+**比较canu、mecat、flye、wtdbg2、miniasm运行时间和组装结果**
 
 
 ### 3.环化（circle）
