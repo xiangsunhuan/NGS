@@ -140,7 +140,7 @@ work.sh
 ```
 #!/bin/bash
 #$ -S /bin/bash
-#$ -N wtdbg2_wang
+#$ -N miniasm_wang
 #$ -cwd
 #$ -j y
 #$ -pe smp 4
